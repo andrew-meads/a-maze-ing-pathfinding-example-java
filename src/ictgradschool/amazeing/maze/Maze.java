@@ -54,13 +54,13 @@ public class Maze {
         fireMazeChanged();
     }
 
-    public void setTile(int x, int y, TileTypes tile) {
-        this.tiles[x][y] = tile;
+    public void setTile(Point tileCoords, TileTypes tile) {
+        this.tiles[tileCoords.getX()][tileCoords.getY()] = tile;
         fireMazeChanged();
     }
 
-    public TileTypes getTile(int x, int y) {
-        return this.tiles[x][y];
+    public TileTypes getTile(Point tileCoords) {
+        return this.tiles[tileCoords.getX()][tileCoords.getY()];
     }
 
     public int getWidth() {

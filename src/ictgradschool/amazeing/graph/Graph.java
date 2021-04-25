@@ -20,7 +20,7 @@ public class Graph<T> {
         // Create nodes (don't create nodes in wall locations)
         for (int x = 0; x < maze.getWidth(); x++) {
             for (int y = 0; y < maze.getHeight(); y++) {
-                TileTypes tile = maze.getTile(x, y);
+                TileTypes tile = maze.getTile(new Point(x, y));
                 if (tile == TileTypes.Blank) {
                     nodes[x][y] = new Node<>(new Point(x, y));
                     g.nodes.add(nodes[x][y]);
