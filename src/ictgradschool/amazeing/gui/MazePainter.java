@@ -37,11 +37,21 @@ public class MazePainter {
         }
     }
 
-    public void paintMaze(Maze maze, Graphics g) {
-        paintTiles(maze, g);
-        paintGridlines(maze, g);
+//    public void paintMaze(Maze maze, Graphics g) {
+//        paintTiles(maze, g);
+//        paintGridlines(maze, g);
+//        paintStart(maze, g);
+//        paintGoal(maze, g);
+//    }
+
+    public void paintForeground(Maze maze, Graphics g) {
         paintStart(maze, g);
         paintGoal(maze, g);
+    }
+
+    public void paintBackground(Maze maze, Graphics g) {
+        paintTiles(maze, g);
+        paintGridlines(maze, g);
     }
 
     private void paintTiles(Maze maze, Graphics g) {

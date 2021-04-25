@@ -37,7 +37,8 @@ public class MazePanel extends JPanel {
             Point offsets = getOffsets();
             g.translate(offsets.getX(), offsets.getY());
 
-            MazePainter.getInstance().paintMaze(this.maze, g);
+            MazePainter.getInstance().paintBackground(this.maze, g);
+            MazePainter.getInstance().paintForeground(this.maze, g);
 
             g.translate(-offsets.getX(), -offsets.getY());
         }
