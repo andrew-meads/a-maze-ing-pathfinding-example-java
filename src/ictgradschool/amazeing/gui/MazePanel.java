@@ -1,6 +1,8 @@
 package ictgradschool.amazeing.gui;
 
 import ictgradschool.amazeing.Point;
+import ictgradschool.amazeing.algorithms.IAlgorithmListener;
+import ictgradschool.amazeing.algorithms.IGraphSearchAlgorithm;
 import ictgradschool.amazeing.maze.IMazeListener;
 import ictgradschool.amazeing.maze.Maze;
 import ictgradschool.amazeing.maze.TileTypes;
@@ -12,6 +14,7 @@ import java.awt.event.*;
 public class MazePanel extends JPanel {
 
     private Maze maze;
+    private IGraphSearchAlgorithm algorithm;
 
     private MouseOperation mouseOperation = MouseOperation.None;
 
@@ -25,7 +28,20 @@ public class MazePanel extends JPanel {
             this.maze.removeMazeListener(mazeListener);
         }
         this.maze = maze;
-        this.maze.addMazeListener(mazeListener);
+        if (this.maze != null) {
+            this.maze.addMazeListener(mazeListener);
+        }
+        repaint();
+    }
+
+    public void setAlgorithm(IGraphSearchAlgorithm algorithm) {
+        if (this.algorithm != null) {
+            this.algorithm.removeAlgorithmListener(algListener);
+        }
+        this.algorithm = algorithm;
+        if (this.algorithm != null) {
+            this.algorithm.addAlgorithmListener(algListener);
+        }
         repaint();
     }
 
@@ -38,6 +54,11 @@ public class MazePanel extends JPanel {
             g.translate(offsets.getX(), offsets.getY());
 
             MazePainter.getInstance().paintBackground(this.maze, g);
+
+            if (algorithm != null) {
+                SearchPainter.getInstance().paintAlgorithm(this.algorithm, g);
+            }
+
             MazePainter.getInstance().paintForeground(this.maze, g);
 
             g.translate(-offsets.getX(), -offsets.getY());
@@ -120,6 +141,8 @@ public class MazePanel extends JPanel {
     }
 
     private final IMazeListener mazeListener = maze -> repaint();
+
+    private final IAlgorithmListener algListener = alg -> repaint();
 
     private enum MouseOperation {
         None, MoveStart, MoveGoal, PlaceWall, DeleteWall

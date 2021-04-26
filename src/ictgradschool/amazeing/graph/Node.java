@@ -1,28 +1,29 @@
 package ictgradschool.amazeing.graph;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Objects;
 
-public class Node<T> {
+public class Node {
 
-    private final T data;
+    private final Object data;
 
-    private final List<Edge> edges = new ArrayList<>();
-
-    public Node(T data) {
+    public Node(Object data) {
         this.data = data;
     }
 
-    public T getData() {
+    public Object getData() {
         return data;
     }
 
-    public List<Edge> getEdges() {
-        return Collections.unmodifiableList(edges);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node node = (Node) o;
+        return data.equals(node.data);
     }
 
-    public void addEdgeTo(Node other) {
-        this.edges.add(new Edge(this, other));
+    @Override
+    public int hashCode() {
+        return Objects.hash(data);
     }
 }

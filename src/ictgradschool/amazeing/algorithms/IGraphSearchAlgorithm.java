@@ -1,11 +1,15 @@
 package ictgradschool.amazeing.algorithms;
 
-import ictgradschool.amazeing.Point;
 import ictgradschool.amazeing.graph.Node;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface IGraphSearchAlgorithm {
+
+    void addAlgorithmListener(IAlgorithmListener l);
+
+    void removeAlgorithmListener(IAlgorithmListener l);
 
     boolean isDone();
 
@@ -17,6 +21,10 @@ public interface IGraphSearchAlgorithm {
 
     boolean step();
 
-    List<Node<Point>> getPath();
+    Collection<Node> getReached();
+
+    Collection<Node> getFrontier();
+
+    List<Node> getPath();
 
 }

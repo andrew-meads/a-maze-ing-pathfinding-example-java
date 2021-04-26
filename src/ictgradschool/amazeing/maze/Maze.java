@@ -15,6 +15,8 @@ public class Maze {
 
     private final List<IMazeListener> mazeListeners = new ArrayList<>();
 
+    private boolean isLocked;
+
     public Maze(int width, int height) {
         this.width = width;
         this.height = height;
@@ -24,6 +26,9 @@ public class Maze {
     }
 
     public void reset() {
+
+        isLocked = false;
+
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 this.tiles[x][y] = TileTypes.Blank;
@@ -36,13 +41,19 @@ public class Maze {
         fireMazeChanged();
     }
 
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
     public Point getStartPoint() {
         return startPoint;
     }
 
     public void setStartPoint(Point startPoint) {
-        this.startPoint = startPoint;
-        fireMazeChanged();
+        if (!isLocked) {
+            this.startPoint = startPoint;
+            fireMazeChanged();
+        }
     }
 
     public Point getGoalPoint() {
@@ -50,13 +61,17 @@ public class Maze {
     }
 
     public void setGoalPoint(Point goalPoint) {
-        this.goalPoint = goalPoint;
-        fireMazeChanged();
+        if (!isLocked) {
+            this.goalPoint = goalPoint;
+            fireMazeChanged();
+        }
     }
 
     public void setTile(Point tileCoords, TileTypes tile) {
-        this.tiles[tileCoords.getX()][tileCoords.getY()] = tile;
-        fireMazeChanged();
+        if (!isLocked) {
+            this.tiles[tileCoords.getX()][tileCoords.getY()] = tile;
+            fireMazeChanged();
+        }
     }
 
     public TileTypes getTile(Point tileCoords) {
