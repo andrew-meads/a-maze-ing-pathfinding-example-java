@@ -8,7 +8,7 @@ import java.util.*;
 
 public class DijkstraSearch extends AbstractSearchAlgorithm {
 
-    private Map<Node, Double> costSoFar;
+    protected Map<Node, Double> costSoFar;
 
     public DijkstraSearch(Graph graph, Node startNode, Node goalNode) {
         super(graph, startNode, goalNode);
@@ -54,7 +54,7 @@ public class DijkstraSearch extends AbstractSearchAlgorithm {
         return new PriorityQueue<>(this::comparePriority);
     }
 
-    private int comparePriority(Node node1, Node node2) {
+    protected int comparePriority(Node node1, Node node2) {
         double priority1 = this.costSoFar.containsKey(node1) ? this.costSoFar.get(node1) : 0;
         double priority2 = this.costSoFar.containsKey(node2) ? this.costSoFar.get(node2) : 0;
         return Double.compare(priority1, priority2);
