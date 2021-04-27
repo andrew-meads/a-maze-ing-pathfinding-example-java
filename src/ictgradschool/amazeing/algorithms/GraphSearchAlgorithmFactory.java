@@ -9,26 +9,20 @@ import java.util.TreeMap;
 
 public class GraphSearchAlgorithmFactory {
 
-    private static GraphSearchAlgorithmFactory instance;
+    private static final Map<String, Class<? extends IGraphSearchAlgorithm>> classes = new TreeMap<>();
 
-    public static GraphSearchAlgorithmFactory getInstance() {
-        if (instance == null) {
-            instance = new GraphSearchAlgorithmFactory();
-        }
-        return instance;
-    }
-
-    private final Map<String, Class<? extends IGraphSearchAlgorithm>> classes = new TreeMap<>();
-
-    private GraphSearchAlgorithmFactory() {
+    static {
         classes.put("Breadth-First Search", BreadthFirstSearch.class);
+        classes.put("Dijkstra (Uniform Cost Search)", DijkstraSearch.class);
+        classes.put("Greedy Best First Search", GreedyBestFirstSearch.class);
+        classes.put("A* Search", AStarSearch.class);
     }
 
-    public String[] getAlgorithmNames() {
+    public static String[] getAlgorithmNames() {
         return classes.keySet().toArray(new String[0]);
     }
 
-    public IGraphSearchAlgorithm createAlgorithm(String name, Graph graph, Node startNode, Node goalNode) {
+    public static IGraphSearchAlgorithm createAlgorithm(String name, Graph graph, Node startNode, Node goalNode) {
         Class<? extends IGraphSearchAlgorithm> clazz = classes.get(name);
         try {
             Constructor<? extends IGraphSearchAlgorithm> ctor = clazz.getConstructor(graph.getClass(), startNode.getClass(), goalNode.getClass());

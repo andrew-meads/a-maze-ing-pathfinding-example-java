@@ -53,13 +53,13 @@ public class MazePanel extends JPanel {
             Point offsets = getOffsets();
             g.translate(offsets.getX(), offsets.getY());
 
-            MazePainter.getInstance().paintBackground(this.maze, g);
+            MazePainter.paintBackground(this.maze, g);
 
             if (algorithm != null) {
-                SearchPainter.getInstance().paintAlgorithm(this.algorithm, g);
+                SearchPainter.paintAlgorithm(this.algorithm, g);
             }
 
-            MazePainter.getInstance().paintForeground(this.maze, g);
+            MazePainter.paintForeground(this.maze, g);
 
             g.translate(-offsets.getX(), -offsets.getY());
         }

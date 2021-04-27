@@ -5,9 +5,9 @@ import java.util.Objects;
 public class Edge {
 
     private final Node from, to;
-    private final int cost;
+    private final double cost;
 
-    public Edge(Node from, Node to, int cost) {
+    public Edge(Node from, Node to, double cost) {
         this.from = from;
         this.to = to;
         this.cost = cost;
@@ -25,7 +25,7 @@ public class Edge {
         return to;
     }
 
-    public int getCost() {
+    public double getCost() {
         return cost;
     }
 

@@ -50,7 +50,7 @@ public class Maze {
     }
 
     public void setStartPoint(Point startPoint) {
-        if (!isLocked) {
+        if (!isLocked && this.tiles[startPoint.getX()][startPoint.getY()] != TileTypes.Wall) {
             this.startPoint = startPoint;
             fireMazeChanged();
         }
@@ -61,14 +61,14 @@ public class Maze {
     }
 
     public void setGoalPoint(Point goalPoint) {
-        if (!isLocked) {
+        if (!isLocked && this.tiles[goalPoint.getX()][goalPoint.getY()] != TileTypes.Wall) {
             this.goalPoint = goalPoint;
             fireMazeChanged();
         }
     }
 
     public void setTile(Point tileCoords, TileTypes tile) {
-        if (!isLocked) {
+        if (!isLocked && !(tileCoords.equals(startPoint) || tileCoords.equals(goalPoint))) {
             this.tiles[tileCoords.getX()][tileCoords.getY()] = tile;
             fireMazeChanged();
         }

@@ -37,7 +37,7 @@ public class Graph {
         edges.get(edge.getFrom()).add(edge);
     }
 
-    public void addEdge(Node from, Node to, int cost) {
+    public void addEdge(Node from, Node to, double cost) {
         addEdge(new Edge(from, to, cost));
     }
 

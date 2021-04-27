@@ -17,44 +17,35 @@ public class MazePainter {
     private static final Color GRIDLINE_COLOR = new Color(0.5f, 0.5f, 0.5f, 0.7f);
     private static final Color OUTLINE_COLOR = Color.black;
 
-    private final BufferedImage startImage, goalImage;
+    private static final BufferedImage startImage, goalImage;
 
-    private static MazePainter instance;
-
-    public static MazePainter getInstance() {
-        if (instance == null) {
-            instance = new MazePainter();
-        }
-        return instance;
-    }
-
-    private MazePainter() {
+    static {
         try {
-            this.startImage = ImageIO.read(new File("graphics/Start.png"));
-            this.goalImage = ImageIO.read(new File("graphics/Goal.png"));
+            startImage = ImageIO.read(new File("graphics/Start.png"));
+            goalImage = ImageIO.read(new File("graphics/Goal.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-//    public void paintMaze(Maze maze, Graphics g) {
+//    public static void paintMaze(Maze maze, Graphics g) {
 //        paintTiles(maze, g);
 //        paintGridlines(maze, g);
 //        paintStart(maze, g);
 //        paintGoal(maze, g);
 //    }
 
-    public void paintForeground(Maze maze, Graphics g) {
+    public static void paintForeground(Maze maze, Graphics g) {
         paintStart(maze, g);
         paintGoal(maze, g);
     }
 
-    public void paintBackground(Maze maze, Graphics g) {
+    public static void paintBackground(Maze maze, Graphics g) {
         paintTiles(maze, g);
         paintGridlines(maze, g);
     }
 
-    private void paintTiles(Maze maze, Graphics g) {
+    private static void paintTiles(Maze maze, Graphics g) {
         for (int x = 0; x < maze.getWidth(); x++) {
             for (int y = 0; y < maze.getHeight(); y++) {
 
@@ -65,7 +56,7 @@ public class MazePainter {
         }
     }
 
-    private void paintGridlines(Maze maze, Graphics g) {
+    private static void paintGridlines(Maze maze, Graphics g) {
 
         g.setColor(GRIDLINE_COLOR);
 
@@ -82,12 +73,12 @@ public class MazePainter {
         g.drawRect(0, 0, maze.getWidth() * TILE_WIDTH, maze.getHeight() * TILE_HEIGHT);
     }
 
-    private void paintStart(Maze maze, Graphics g) {
+    private static void paintStart(Maze maze, Graphics g) {
         ictgradschool.amazeing.Point p = maze.getStartPoint();
         g.drawImage(startImage, p.getX() * TILE_WIDTH, p.getY() * TILE_HEIGHT, null);
     }
 
-    private void paintGoal(Maze maze, Graphics g) {
+    private static void paintGoal(Maze maze, Graphics g) {
         Point p = maze.getGoalPoint();
         g.drawImage(goalImage, p.getX() * TILE_WIDTH, p.getY() * TILE_HEIGHT, null);
     }
