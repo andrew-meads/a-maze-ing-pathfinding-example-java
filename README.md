@@ -38,7 +38,7 @@ An exampe showing program usage is shown here:
 The code is organized using good Java / Object-Oriented programming conventions.
 
 ### Model-View-Controller (MVC)
-The [`IGraphSearchAlgorithm`](./src/ictgradschool/amazeing/algorithms/IGraphSearchAlgorithm.java) implementations, and the [`Maze`](./src/ictgradschool/amazeing/maze/Maze.java),  maintain lists of listeners ([`IAlgorithmListener`](./src/ictgradschool/amazeing/algorithms/IAlgorithmListener.java) and [`IMazeListener`](./src/ictgradschool/amazeing/maze/IMazeListener.java), respectively). Whenever the state of instances of these classes changes, those listeners will be notified about the changes.
+The [`IGraphSearchAlgorithm`](./src/ictgradschool/amazeing/algorithms/IGraphSearchAlgorithm.java) implementations, and the [`Maze`](./src/ictgradschool/amazeing/maze/Maze.java),  maintain lists of listeners ([`IAlgorithmListener`](./src/ictgradschool/amazeing/algorithms/IAlgorithmListener.java) and [`IMazeListener`](./src/ictgradschool/amazeing/maze/IMazeListener.java), respectively). Whenever the programState of instances of these classes changes, those listeners will be notified about the changes.
 
 In this project, the [`MazePanel`](./src/ictgradschool/amazeing/gui/MazePanel.java) listens for these changes, so that it may `repaint()` itself when necessary.
 
